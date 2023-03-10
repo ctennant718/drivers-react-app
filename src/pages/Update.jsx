@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/Header";
 
 function Update() {
   return (
-    <div>Update</div>
-  )
+    <>
+      <Header />
+      <div>Update</div>
+    </>
+  );
 }
 
-export default Update
+export default Update;

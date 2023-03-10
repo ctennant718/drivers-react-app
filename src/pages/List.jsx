@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/Header";
 
 function List() {
   return (
-    <div>List</div>
-  )
+    <>
+      <Header />
+      <div>List</div>
+    </>
+  );
 }
 
-export default List
+export default List;

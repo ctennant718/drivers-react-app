@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/Header";
 
 function Add() {
   return (
-    <div>Add</div>
-  )
+    <>
+      <Header />
+      <div>Add</div>
+    </>
+  );
 }
 
-export default Add
+export default Add;
