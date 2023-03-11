@@ -9,7 +9,7 @@ const schema = yup
   .shape({
     firstname: yup.string().max(30).required(),
     lastname: yup.string().max(30).required(),
-    age: yup.number().integer().positive().max(100).required(),
+    age: yup.number().integer().positive().max(500).required(),
     email: yup.string().email().required(),
   })
   .required();
@@ -99,7 +99,7 @@ export default function DriversForm({ driver, submitHandler }) {
               fullWidth
               type="text"
               error={!!errors.age}
-              pattern={/[0-100]/}
+              pattern={/[0-500]/}
               {...field}
               label="Age"
               helperText={errors.age?.message}
