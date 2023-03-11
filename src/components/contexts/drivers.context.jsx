@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback, useContext } from "react";
 import { DRIVERS_ENDPOINT, STORAGE_KEY } from "../../settings";
+import { UIContext } from "./UI.context";
 
 export const DriversContext = createContext({
   fetchDrivers: () => [],
@@ -13,6 +14,7 @@ export const DriversContext = createContext({
 });
 
 export const DriversProvider = ({ children }) => {
+  const { showMessage } = useContext(UIContext);
   const [drivers, setDrivers] = useState(() => {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
   });
@@ -26,7 +28,7 @@ export const DriversProvider = ({ children }) => {
     }
     setLoading(true);
     try {
-      console.log(`fetching from ${DRIVERS_ENDPOINT}`);
+      console.log(`Fetching from ${DRIVERS_ENDPOINT}.`);
       const response = await fetch(DRIVERS_ENDPOINT);
       if (!response.ok) {
         throw response;
@@ -41,11 +43,11 @@ export const DriversProvider = ({ children }) => {
       setLoaded(true);
       setLoading(false);
     }
-  }, [error, loaded, loading]);
+  }, [error, loaded, loading, setError, setDrivers, setLoaded, setLoading]);
 
   const addDriver = useCallback(
     async (formData) => {
-      console.log("about to add", formData);
+      console.log("About to add", formData);
       try {
         const response = await fetch(DRIVERS_ENDPOINT, {
           method: "POST",
@@ -58,15 +60,23 @@ export const DriversProvider = ({ children }) => {
           throw response;
         }
         const savedDriver = await response.json();
-        console.log("got data", savedDriver);
+        console.log("Got data", savedDriver);
         const newDrivers = [...drivers, savedDriver];
         localStorage.setItem(STORAGE_KEY, JSON.stringify(newDrivers));
         setDrivers(newDrivers);
+        showMessage({
+          type: "success",
+          string: `Congratulations! You're in the race!`,
+        });
       } catch (err) {
         console.log(err);
+        showMessage({
+          type: "error",
+          string: `Oh no! There was an error adding your driver details.`,
+        });
       }
     },
-    [drivers],
+    [drivers, setDrivers, showMessage],
   );
 
   const updateDriver = useCallback(
@@ -113,11 +123,19 @@ export const DriversProvider = ({ children }) => {
         ];
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedDrivers));
         setDrivers(updatedDrivers);
+        showMessage({
+          type: "success",
+          string: `Driver's details successfully updated.`,
+        });
       } catch (err) {
         console.log(err);
+        showMessage({
+          type: "error",
+          string: `Oh no! There was an error updating your driver details.`,
+        });
       }
     },
-    [drivers],
+    [drivers, setDrivers, showMessage],
   );
 
   const deleteDriver = useCallback(
@@ -142,11 +160,19 @@ export const DriversProvider = ({ children }) => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedDrivers));
         setDrivers(updatedDrivers);
         console.log(`Deleted ${deletedDriver.firstname}`);
+        showMessage({
+          type: "info",
+          string: `Driver deleted. Maybe next time?`,
+        });
       } catch (err) {
         console.log(err);
+        showMessage({
+          type: "error",
+          string: `Oh no! There was an error deleting ${deletedDriver.firstname}`,
+        });
       }
     },
-    [drivers],
+    [drivers, setDrivers, showMessage],
   );
 
   return (

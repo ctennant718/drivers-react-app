@@ -12,6 +12,7 @@ import theme from "./theme/theme";
 import Layout from "./components/Layout";
 
 import { DriversProvider } from "./components/contexts/drivers.context";
+import { UIProvider } from "./components/contexts/UI.context";
 
 import List from "./pages/List";
 import Add from "./pages/Add";
@@ -25,16 +26,18 @@ function App() {
     <Router>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <DriversProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<List />} />
-              <Route path="/add" element={<Add />} />
-              <Route path="/update/:id" element={<Update />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </DriversProvider>
+        <UIProvider>
+          <DriversProvider>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<List />} />
+                <Route path="/add" element={<Add />} />
+                <Route path="/update/:id" element={<Update />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </DriversProvider>
+        </UIProvider>
       </ThemeProvider>
     </Router>
   );
