@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,23 +8,14 @@ import ListItemText from "@mui/material/ListItemText";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
+import { DriversContext } from "../components/contexts/drivers.context";
+
 function DriversList() {
-  const drivers = [
-    {
-      _id: 1,
-      firstname: "Joel",
-      lastname: "Tennant",
-      age: 40,
-      email: "joel@test.com",
-    },
-    {
-      _id: 1,
-      firstname: "Charlotte",
-      lastname: "Tennant",
-      age: 27,
-      email: "charlotte@test.com",
-    },
-  ];
+  const { drivers, fetchDrivers } = useContext(DriversContext);
+
+  useEffect(() => {
+    fetchDrivers();
+  }, [fetchDrivers]);
   return (
     <>
       <Typography variant="h2" component="h2" mb="0.5em">
