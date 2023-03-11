@@ -22,7 +22,7 @@ function DriversListPage() {
         Drivers
       </Typography>
       <Typography paragraph={true}>
-        Add your name to take part in the race of a lifetime!
+        Add your entry to take part in the race of a lifetime!
       </Typography>
       <DriversList drivers={drivers} deleteHandler={deleteHandler} />
     </>

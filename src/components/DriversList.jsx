@@ -11,10 +11,11 @@ function DriversList({
   drivers = [],
   deleteHandler = () => console.log("No deleteHandler provided to Drivers List"),
 }) {
+  const reversedDrivers = [...drivers].reverse();
   return (
     <List>
-      {drivers.map(({ firstname, lastname, age, email, _id }, i) => (
-        <ListItem key={i}>
+      {reversedDrivers.map(({ firstname, lastname, age, email, _id }) => (
+        <ListItem key={_id }>
           <ListItemText
             primary={`${firstname} ${lastname} (Age: ${age})`}
             secondary={`Email: ${email}`}
