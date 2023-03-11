@@ -47,7 +47,7 @@ export const DriversProvider = ({ children }) => {
     async (formData) => {
       console.log("about to add", formData);
       try {
-        const response = await fetch(CARS_ENDPOINT, {
+        const response = await fetch(DRIVERS_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
