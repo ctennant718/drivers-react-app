@@ -22,7 +22,7 @@ function DogsList() {
     {
       _id: 2,
       name: "Cocker Spaniel",
-      playfulness: 6,
+      playfulness: 5,
       image_link:
         "https://www.purina.co.uk/sites/default/files/styles/square_medium_440x440/public/2022-07/Spaniel%20%28Cocker%291.jpg?h=ccdd1b23&itok=rtpOkLHY",
     },

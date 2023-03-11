@@ -1,11 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Typography from "@mui/material/Typography";
+import DogForm from "../components/forms/DogForm";
 
 function Update() {
   const { id } = useParams();
+  // get car and handler to form
   return (
     <>
-      <div>Update {id}</div>
+      <Typography variant="h2" component="h1">
+        Update a Dog
+      </Typography>
+      <DogForm />
     </>
   );
 }
