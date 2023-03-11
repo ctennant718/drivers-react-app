@@ -7,20 +7,22 @@ import { TextField, Button } from "@mui/material";
 const schema = yup
   .object()
   .shape({
-    name: yup.string().max(30).required(),
-    playfulness: yup.number().integer().positive().max(5).required(),
-    image_link: yup.string().url(),
+    firstname: yup.string().max(30).required(),
+    lastname: yup.string().max(30).required(),
+    age: yup.number().integer().positive().max(100).required(),
+    email: yup.string().email().required(),
   })
   .required();
 
 const defaults = {
-  name: "",
-  playfulness: "",
-  image_link: "",
+  firstname: "",
+  lastname: "",
+  age: "",
+  email: "",
 };
 
-export default function CarForm({ dog, submitHandler }) {
-  console.log(dog);
+export default function DriversForm({ driver, submitHandler }) {
+  console.log(driver);
 
   const {
     handleSubmit,
@@ -31,15 +33,15 @@ export default function CarForm({ dog, submitHandler }) {
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
-    defaultValues: dog || defaults,
+    defaultValues: driver || defaults,
   });
 
   useEffect(() => {
     // console.log('useeffect', car);
-    if (dog) {
-      reset(dog);
+    if (driver) {
+      reset(driver);
     }
-  }, [dog, reset]);
+  }, [driver, reset]);
 
   const formRowStyle = {
     marginBlockEnd: "1em",
@@ -47,7 +49,7 @@ export default function CarForm({ dog, submitHandler }) {
 
   let submitFn = (vals) => {
     reset();
-    dog ? submitHandler(dog._id, vals) : submitHandler(vals);
+    driver ? submitHandler(driver._id, vals) : submitHandler(vals);
   };
 
   return (
@@ -55,16 +57,16 @@ export default function CarForm({ dog, submitHandler }) {
       <div style={formRowStyle}>
         <Controller
           control={control}
-          name="name"
+          name="firstname"
           defaultValue={""}
           render={({ field }) => (
             <TextField
               type="name"
               {...field}
-              label="Name"
+              label="First Name"
               fullWidth
-              error={!!errors.name}
-              helperText={errors.name?.message}
+              error={!!errors.firstname}
+              helperText={errors.firstname?.message}
             />
           )}
         />
@@ -72,17 +74,16 @@ export default function CarForm({ dog, submitHandler }) {
       <div style={formRowStyle}>
         <Controller
           control={control}
-          name="playfulness"
+          name="lastname"
           defaultValue={""}
           render={({ field }) => (
             <TextField
-              type="number"
+              type="name"
               fullWidth
-              error={!!errors.playfulness}
+              error={!!errors.lastname}
               {...field}
-              label="Playfulness"
-              pattern={/[0-5]/}
-              helperText={errors.playfulness?.message}
+              label="Last Name"
+              helperText={errors.lastname?.message}
             />
           )}
         />
@@ -91,16 +92,34 @@ export default function CarForm({ dog, submitHandler }) {
       <div style={formRowStyle}>
         <Controller
           control={control}
-          name="image_link"
+          name="age"
           defaultValue={""}
           render={({ field }) => (
             <TextField
               fullWidth
               type="text"
-              error={!!errors.image_link}
+              error={!!errors.age}
+              pattern={/[0-100]/}
               {...field}
-              label="Image URL"
-              helperText={errors.image_link?.message}
+              label="Age"
+              helperText={errors.age?.message}
+            />
+          )}
+        />
+      </div>
+      <div style={formRowStyle}>
+        <Controller
+          control={control}
+          name="email"
+          defaultValue={""}
+          render={({ field }) => (
+            <TextField
+              fullWidth
+              type="text"
+              error={!!errors.email}
+              {...field}
+              label="Email"
+              helperText={errors.email?.message}
             />
           )}
         />

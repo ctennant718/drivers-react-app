@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import DogForm from "../components/forms/DogForm";
+import DriversForm from "../components/forms/DriversForm";
 
 function Update() {
   const { id } = useParams();
@@ -9,9 +9,9 @@ function Update() {
   return (
     <>
       <Typography variant="h2" component="h1">
-        Update a Dog
+        Update a Driver
       </Typography>
-      <DogForm />
+      <DriversForm />
     </>
   );
 }

@@ -1,14 +1,14 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import DogForm from "../components/forms/DogForm";
+import DriversForm from "../components/forms/DriversForm";
 
 function Add() {
   return (
     <>
       <Typography variant="h2" component="h1">
-        Add a Dog
+        Add a Driver
       </Typography>
-      <DogForm />
+      <DriversForm />
     </>
   );
 }

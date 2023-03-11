@@ -39,11 +39,11 @@ function DesktopNavigation({
               color: lightTextColor,
             }}
           >
-            My Dogs
+            Drivers
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Button sx={{ color: lightTextColor }} component={NavLink} to="/add">
-              Add Dog
+              Add a Driver
             </Button>
           </Box>
         </Toolbar>

@@ -31,7 +31,7 @@ function MobileNavigation({
       >
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
           <Typography variant="h6" sx={{ my: 2 }}>
-            My Dogs
+            Race Sign-Up
           </Typography>
           <Divider />
           <List>
@@ -41,7 +41,7 @@ function MobileNavigation({
                 component={NavLink}
                 to="/"
               >
-                <ListItemText primary={"My Dogs"} />
+                <ListItemText primary={"Drivers"} />
               </ListItemButton>
             </ListItem>
             <ListItem>
@@ -50,7 +50,7 @@ function MobileNavigation({
                 component={NavLink}
                 to="/add"
               >
-                <ListItemText primary={"Add a Dog"} />
+                <ListItemText primary={"Add a Driver"} />
               </ListItemButton>
             </ListItem>
           </List>
