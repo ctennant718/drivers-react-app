@@ -1,15 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { DriversContext } from "../components/contexts/drivers.context";
-import { UIContext } from "../components/contexts/UI.context";
 
 import DriversList from "../components/DriversList";
 
 function DriversListPage() {
-  const { drivers, fetchDrivers, deleteDriver } = useContext(DriversContext);
-  const { showMessage } = useContext(UIContext);
+  const { drivers, fetchDrivers, deleteDriver, loading, error } = useContext(DriversContext);
 
   useEffect(() => {
     fetchDrivers();
@@ -19,6 +17,16 @@ function DriversListPage() {
     deleteDriver(id);
   };
 
+  let callStatusComponent = null;
+
+  if (loading) {
+    callStatusComponent = <CircularProgress />;
+  } else if (error) {
+    callStatusComponent = <p>{error}: Loading from localStorage</p>;
+  } else if (drivers.length === 0) {
+    callStatusComponent = <p>No cars to display</p>;
+  }
+
   return (
     <>
       <Typography variant="h2" component="h2" mb="0.5em">
@@ -27,6 +35,7 @@ function DriversListPage() {
       <Typography paragraph={true}>
         Add your entry to take part in the race of a lifetime!
       </Typography>
+      {callStatusComponent}
       <DriversList drivers={drivers} deleteHandler={deleteHandler} />
     </>
   );

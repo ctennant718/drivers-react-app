@@ -17,7 +17,7 @@ function DesktopNavigation({
   const lightTextColor = theme.palette.common.white
   return (
     <>
-      <AppBar component="nav">
+      <AppBar component="nav" position="sticky" sx={{ mb: 2 }}>
         <Toolbar>
           <IconButton
             color="inherit"
