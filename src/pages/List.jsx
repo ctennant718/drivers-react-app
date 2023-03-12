@@ -20,7 +20,7 @@ function DriversListPage() {
   let callStatusComponent = null;
 
   if (loading) {
-    callStatusComponent = <CircularProgress />;
+    callStatusComponent = <CircularProgress color="secondary" />;
   } else if (error) {
     callStatusComponent = <p>{error}: Loading from localStorage</p>;
   } else if (drivers.length === 0) {
@@ -30,10 +30,10 @@ function DriversListPage() {
   return (
     <>
       <Typography variant="h2" component="h2" mb="0.5em">
-        Drivers
+        Race Sign-Up
       </Typography>
       <Typography paragraph={true}>
-        Add your entry to take part in the race of a lifetime!
+        Add your details to take part in the race of a lifetime!
       </Typography>
       {callStatusComponent}
       <DriversList drivers={drivers} deleteHandler={deleteHandler} />

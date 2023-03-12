@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import MobileNavigation from "./MobileNavigation";
 import DesktopNavigation from "./DesktopNavigation";
-import ErrorBoundary from "./debug/ErrorBoundary";
 
 function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -19,7 +18,7 @@ function Header() {
         mobileOpen={mobileOpen}
       />
       <DesktopNavigation handleDrawerToggle={handleDrawerToggle} />
-      <Box component="main" sx={{ p: 1 }}>
+      <Box component="main" sx={{ p: 1  }}>
           <Toolbar />
       </Box>
     </Box>

@@ -14,8 +14,11 @@ function Add() {
   };
   return (
     <>
-      <Typography variant="h2" component="h1">
+      <Typography variant="h2" component="h1" sx={{ mb: 2 }}>
         Add a Driver
+      </Typography>
+      <Typography paragraph={true} sx={{ mb: 3 }}>
+        You can add a driver's details using the fields below:
       </Typography>
       <DriversForm submitHandler={submitHandler} />
     </>

@@ -9,13 +9,14 @@ import EditIcon from "@mui/icons-material/Edit";
 
 function DriversList({
   drivers = [],
-  deleteHandler = () => console.log("No deleteHandler provided to Drivers List"),
+  deleteHandler = () =>
+    console.log("No deleteHandler provided to Drivers List"),
 }) {
   const reversedDrivers = [...drivers].reverse();
   return (
     <List>
       {reversedDrivers.map(({ firstname, lastname, age, email, _id }) => (
-        <ListItem key={_id }>
+        <ListItem key={_id} sx={{ bgcolor: "#81c784", mb: 2, borderRadius: 2 }}>
           <ListItemText
             primary={`${firstname} ${lastname} (Age: ${age})`}
             secondary={`Email: ${email}`}
@@ -27,10 +28,7 @@ function DriversList({
           >
             <EditIcon />
           </IconButton>
-          <IconButton
-            aria-label="delete"
-            onClick={() => deleteHandler(_id)}
-          >
+          <IconButton aria-label="delete" onClick={() => deleteHandler(_id)}>
             <DeleteIcon />
           </IconButton>
         </ListItem>

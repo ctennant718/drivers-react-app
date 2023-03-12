@@ -39,7 +39,7 @@ function DesktopNavigation({
               color: lightTextColor,
             }}
           >
-            Drivers
+            Race Sign-Up
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Button sx={{ color: lightTextColor }} component={NavLink} to="/add">

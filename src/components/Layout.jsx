@@ -39,7 +39,7 @@ function Layout() {
         <Header />
       </header>
       <main>
-        <Container maxWidth="md">
+        <Container maxWidth="md" sx={{mt: 7}}>
           <Outlet />
         </Container>
       </main>

@@ -7,10 +7,22 @@ import { TextField, Button } from "@mui/material";
 const schema = yup
   .object()
   .shape({
-    firstname: yup.string().max(30).required(),
-    lastname: yup.string().max(30).required(),
-    age: yup.number().integer().positive().max(500).required(),
-    email: yup.string().email().required(),
+    firstname: yup
+      .string()
+      .max(30, "First name must be a maximum of 30 characters.")
+      .required(),
+    lastname: yup
+      .string()
+      .max(30, "Last name must be a maximum of 30 characters.")
+      .required(),
+    age: yup
+      .number()
+      .typeError("Please enter a number.")
+      .integer()
+      .positive()
+      .max(500)
+      .required(),
+    email: yup.string().email("Please enter a valid email.").required(),
   })
   .required();
 
@@ -61,6 +73,7 @@ export default function DriversForm({ driver, submitHandler }) {
           defaultValue={""}
           render={({ field }) => (
             <TextField
+              required
               type="name"
               {...field}
               label="First Name"
@@ -79,6 +92,7 @@ export default function DriversForm({ driver, submitHandler }) {
           render={({ field }) => (
             <TextField
               type="name"
+              required
               fullWidth
               error={!!errors.lastname}
               {...field}
@@ -97,6 +111,7 @@ export default function DriversForm({ driver, submitHandler }) {
           render={({ field }) => (
             <TextField
               fullWidth
+              required
               type="text"
               error={!!errors.age}
               pattern={/[0-500]/}
@@ -115,6 +130,7 @@ export default function DriversForm({ driver, submitHandler }) {
           render={({ field }) => (
             <TextField
               fullWidth
+              required
               type="text"
               error={!!errors.email}
               {...field}
